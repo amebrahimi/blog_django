@@ -1,0 +1,22 @@
+{
+	"name": "Existing Docker Compose (Extend)",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "django",
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [
+		5000,
+		8000
+	],
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python"
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"albert.TabOut"
+			]
+		}
+	}
+}
