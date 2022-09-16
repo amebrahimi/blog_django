@@ -16,7 +16,9 @@
 				"ms-python.python",
 				"ms-python.vscode-pylance",
 				"albert.TabOut",
-				"eamodio.gitlens"
+				"eamodio.gitlens",
+				"ecmel.vscode-html-css",
+				"samuelcolvin.jinjahtml"
 			]
 		}
 	}
