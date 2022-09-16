@@ -15,7 +15,8 @@
 			"extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",
-				"albert.TabOut"
+				"albert.TabOut",
+				"eamodio.gitlens"
 			]
 		}
 	}
