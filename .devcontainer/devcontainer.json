@@ -18,7 +18,8 @@
 				"albert.TabOut",
 				"eamodio.gitlens",
 				"ecmel.vscode-html-css",
-				"samuelcolvin.jinjahtml"
+				"samuelcolvin.jinjahtml",
+				"esbenp.prettier-vscode"
 			]
 		}
 	}
