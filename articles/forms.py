@@ -9,6 +9,7 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = ['title', 'content']
 
+
     def clean(self):
         data = self.cleaned_data
         title = data.get('title')
