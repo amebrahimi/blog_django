@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&bej-sr#2z1zpbpc&^r1dk8qrl%_h3uh48z#hb0yy1%t7lvh2h'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY', 'django-insecure-&bej-sr#2z1zpbpc&^r1dk8qrl%_h3uh48z#hb0yy1%t7lvh2h')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = str(os.environ.get('DJANGO_DEBUG')) == "1"
 
 ALLOWED_HOSTS = []
+if (not DEBUG):
+    ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOSTS')]
 
 
 # Application definition
@@ -37,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #User Apps
+    # User Apps
     'articles',
 ]
 
@@ -78,12 +82,35 @@ WSGI_APPLICATION = 'trydjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+POSTGRES_DB_NAME=os.environ.get('DJANGO_DB_NAME')
+POSTGRES_DB_USER=os.environ.get('DJANGO_DB_USER')
+POSTGRES_DB_PASSWORD=os.environ.get('DJANGO_DB_PASSWORD')
+POSTGRES_DB_HOST=os.environ.get('DJANGO_DB_HOST')
+
+POSTGRES_READY = (
+    POSTGRES_DB_NAME is not None 
+    and POSTGRES_DB_USER is not None 
+    and POSTGRES_DB_PASSWORD is not None 
+    and POSTGRES_DB_HOST is not None)
+
+
+if (POSTGRES_READY):
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': POSTGRES_DB_NAME,
+            'USER': POSTGRES_DB_USER,
+            'PASSWORD': POSTGRES_DB_PASSWORD,
+            'HOST': POSTGRES_DB_HOST
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

@@ -29,9 +29,16 @@ services:
 
   django:
     container_name: django_container
+    env_file:
+      - ../.env
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
+      args:
+        - DJANGO_SECRET_KEY=$DJANGO_SECRET_KEY
+        - DJANGO_DEBUG=$DJANGO_DEBUG
+        - DJANGO_ALLOWED_HOSTS=$DJANGO_ALLOWED_HOSTS
+
     volumes:
       - .:/code
       - ..:/workspace:cached

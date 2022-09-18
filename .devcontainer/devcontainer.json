@@ -20,7 +20,8 @@
 				"ecmel.vscode-html-css",
 				"samuelcolvin.jinjahtml",
 				"esbenp.prettier-vscode",
-				"hookyqr.beautify"
+				"hookyqr.beautify",
+				"ms-azuretools.vscode-docker"
 			]
 		}
 	}
