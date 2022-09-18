@@ -1,16 +1,17 @@
 {%extends "base.html"%}
 
 {% block content %}
-	{% if not created %}
-		<div style="margin-top:30px;">
-			<form action="." method="POST">
-					{% csrf_token %}
-					{{ form.as_p }}
-					<input style="margin-top:10px;"type="submit" value="Create Article"/>
-			</form>
-		</div>
-	{% else %}
-		<p>Your Article was create...</p>
-		<a href="/articles/{{ object.id }}/">{{ object.title }} - {{ object.content }}</a>
-	{% endif %}
+{% if not created %}
+
+<div style="margin-top:30px;">
+	<form action="." method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input style="margin-top:10px;" type="submit" value="Create Article" />
+	</form>
+</div>
+{% else %}
+<p>Your Article was create...</p>
+<a href="/articles/{{ object.id }}/">{{ object.title }} - {{ object.content }}</a>
+{% endif %}
 {% endblock content %}

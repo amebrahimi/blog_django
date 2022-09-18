@@ -1,0 +1,10 @@
+{
+	"beautify.language": {
+		"html": [
+			"django-html"
+		]
+	},
+	"[django-html]": {
+		"editor.defaultFormatter": "HookyQR.beautify"
+	}
+}

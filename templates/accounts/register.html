@@ -8,13 +8,13 @@
 {% endif %}
 <form action="" method="POST">
   <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
-  {{ form.as_p }}
-  <button style="margin-top: 10" type="submit">Login</button>
-  <p>Need an account? Please <a href="/login">Register</a></p>
+	{{ form.as_p }}
+	<button style="margin-top: 10" type="submit">Register</button>
+	<p>Already have an account? Please <a href="/login">Login</a></p>
 </form>
 {% else %}
 <p>
-  You're already logged in. would you like to <a href="/logout/">logout</a>?
+	You're already logged in and cannot register. would you like to <a href="/logout/">logout</a>?
 </p>
 {% endif %}
 {% endblock content %}
